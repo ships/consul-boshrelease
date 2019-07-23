@@ -58,9 +58,9 @@
   end
 
   if (networks = spec.networks.methods(false)) && dns = spec.networks.send(networks.first).dns
-    config[:recursor] = dns.first
+    config[:recursors] = [dns.first]
   else
-    config[:recursor] = p('consul.default_recursor')
+    config[:recursors] = [p('consul.default_recursor')]
   end
 
   config[:start_join] = join_hosts
